@@ -48,10 +48,10 @@ header img {
 
 .icon {
     background-color: white;
-    width: 20%;
+    width: calc( ( 100% / 5 ) - 30px );
     margin: 10px 0;
     text-align: center;
-    padding: 25px;
+    padding: 20px;
     border-radius: 12px;
     box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.5);
 }
