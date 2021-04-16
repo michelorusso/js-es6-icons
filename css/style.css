@@ -1,0 +1,61 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* COMMON */
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.wrapper {
+    width: 1200px;
+    margin: auto;
+}
+
+/*  HEADER  */
+header {
+    padding-top: 15px;
+}
+
+header img {
+    width: 15%;
+}
+
+/* Select-type */
+.select-type {
+    background-color: #29b1dd;
+    text-align: center;
+    padding: 15px;
+    color: white;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+/* Icons-Section */
+.icons-section {
+    background-color: lightgray;
+}
+
+.icons-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 15px 0;
+}
+
+.icon {
+    background-color: white;
+    width: 20%;
+    margin: 10px 0;
+    text-align: center;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.5);
+}
+
+.icon i {
+    font-size: 40px;
+}

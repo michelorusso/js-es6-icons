@@ -112,3 +112,13 @@ const colors = [
 
 // Milestone 3
 // Creiamo una select con i tipi di icone e usiamola per filtrare le icone
+
+
+/* 
+<div class="icon">
+		<i class="fas fa-cat"></i>
+	<div>
+		nome
+	</div>
+</div> 
+*/
