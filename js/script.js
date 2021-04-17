@@ -116,25 +116,16 @@ const colors = [
 // Creiamo una select con i tipi di icone e usiamola per filtrare le icone
 
 
-/* 
-<div class="icon">
-		<i class="fas fa-cat"></i>
-	<div>
-		nome
-	</div>
-</div> 
-*/
-
 // Milestone 1
 // iconsContainer -> salviamo il div icons-container nella variabile
 const iconsContainer = $('#icons-container');
-
-printIcons(icons, iconsContainer);
+const arrayIconsColor = colorArray(icons, colors);
+printIcons(arrayIconsColor, iconsContainer);
 
 // FUNCTIOS
 // printIcons -> funzione di stampa dell'array di oggetti
 // 
-// iconsArray -> è l'argomento dell'array di oggetti Icons
+// iconsArray -> è l'argomento dell'array di oggetti arrayIconsColor
 // container -> è l'argomento collegato all'HTML( iconsContainer )
 function printIcons(iconsArray, container) {
 	
@@ -142,12 +133,12 @@ function printIcons(iconsArray, container) {
 	iconsArray.forEach((element) => {
 
 		// con il destructuring su element prendiamo le chiavi che ci servono 
-		const {name, prefix, family} = element;
+		const {name, prefix, family, color} = element;
 
 		// iconHtml -> Template Literal per creare il codice che verrà inserito nel container
 		const iconHtml = `
 		<div class="icon">
-			<i class="${family} ${prefix}${name}"></i>
+			<i class="${family} ${prefix}${name}" style="color: ${color}"></i>
 			<div>
 				${name.toUpperCase()}
 			</div>
@@ -158,6 +149,68 @@ function printIcons(iconsArray, container) {
 		container.append(iconHtml);
 		
 	});
+}
+
+// Milestone 2
+// Coloriamo le icone per tipo
+// colorArray -> funzione che prende l'array orginale e aggiunge il colore in base al tipo di icona
+// 
+// arrayIconsOriginal -> è l'argomento dell'array di oggetti Icons
+// arrayColor -> è l'argomento dell'array di oggetti colors
+// 
+// return: array di oggetti con colori in base al type di icona
+function colorArray(arrayIconsOriginal, arrayColor) {
+
+	// typeIcon -> array di stringhe con i tipi di icone
+	const typeIcon = arrayIconsType(arrayIconsOriginal);
+	
+	// newArrayColor -> nuovo array contenete il colore in base al tipo di icona
+	// per creare un nuovo arrai uso .map
+	const newArrayColor = arrayIconsOriginal.map((element) => {
+		
+		// newArray -> lavorando su element modifico l'array originale, quindi creo un "clone"
+		const newArray = {
+			...element
+		}
+
+		// iconsTypeIndex -> salviamo l'indice in base al typo di icona...
+		const iconsTypeIndex = typeIcon.indexOf(newArray.type);
+		// console.log(iconsTypeIndex);
+
+		// ... nel nuovo array verrà inserito il colore in base all'indice
+		if( iconsTypeIndex != -1 ) {
+			newArray.color = arrayColor[iconsTypeIndex];
+		}
+		
+		return newArray;
+	});
+
+	return newArrayColor;
+}
+
+// arrayIconsType -> funzione che crea un artray di stringhe contenente solamente i tipi di icone senza duplicati
+// 
+// arrayIconsOriginal -> è l'argomento dell'array di oggetti Icons
+// 
+// return : arrayTypeIcons che è l'array di stringhe contenente solamente il type di icone
+function arrayIconsType(arrayIconsOriginal) {
+
+	// arrayTypeIcons -> array vuoto che verrà popolato dai tipi di icone
+	const arrayTypeIcons= [];
+	
+	// Usiamo il forEach per ciclare l'array di oggetti
+	arrayIconsOriginal.forEach((element) => {
+		
+		let typeIconObject = element.type;
+		
+		// se type non è incluso nell'arrayTypeIcons allora lo pushamo dentro, in questo modo evitiamo i duplicati
+		if( !arrayTypeIcons.includes(typeIconObject)) {
+			arrayTypeIcons.push(typeIconObject);
+		}
+
+	});
+	
+	return arrayTypeIcons;
 }
 
 
